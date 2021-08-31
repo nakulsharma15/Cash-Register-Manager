@@ -1,42 +1,53 @@
 const billAmount = document.querySelector("#bill-amount");
-const cashgiven = document.querySelector("#cash-given");
+const cashGiven = document.querySelector("#cash-given");
 const checkButton = document.querySelector("#check-button");
 const message = document.querySelector("#error-message");
 const noOfNotes = document.querySelectorAll(".no-of-notes");
+var nextButton = document.querySelector("#next-button");
+var cashDisplay = document.querySelector(".cash-display")
+var tableDisplay= document.querySelector("#table-display")
 
 const availableNotes = [2000 , 500 , 100 , 20 , 10 , 1];
 
-checkButton.addEventListener("click", function validateBillAndCashAmount() {
+cashDisplay.style.display="none";
+tableDisplay.style.display="none";
+
+nextButton.addEventListener("click", function validateBillAmount() {
     hideMessage();
-    if(billAmount.value > 0) {
-
-        if(cashgiven.value >= billAmount.value) {
-            var amountToBeReturned = cashgiven.value - billAmount.value;
-            calculateChange(amountToBeReturned);
-        }
-        else if(cashgiven.value === billAmount.value) {
-            showMessage("No change is to be given")
-        }
-        else{
-            showMessage("Cash given is less than the Bill Amount")
-        }
-
+    if(billAmount.value > 0){
+        nextButton.style.display = "none";
+        cashDisplay.style.display = "block";
+        
     }
     else {
-        showMessage("Invalid Bill Amount");      
+        showMessage("Invalid Number");
     }
 });
 
-function calculateChange(amountToBeReturned) {
-    for(let i = 0 ; i < availableNotes.length ; i ++) {
-        const numberOfNotes = Math.trunc(amountToBeReturned / availableNotes[i]);
+checkButton.addEventListener("click", function validateBillAndCashAmount() {
+    hideMessage();
+    if(Number(cashGiven.value) >= Number(billAmount.value)) {
+        const amountToBeReturned = cashGiven.value - billAmount.value;
+        calculateReturnChange(amountToBeReturned);
+    }
+    else {
+        showMessage("Do you wanna wash plates?");
+    }
+
+});
+function calculateReturnChange(amountToBeReturned){
+    for(let i=0; i<availableNotes.length; i++){
+
+        const numOfNotes = Math.trunc(amountToBeReturned / availableNotes[i]);
+
         amountToBeReturned = amountToBeReturned % availableNotes[i];
 
-        noOfNotes[i].innerText = numberOfNotes;
-
+        noOfNotes[i].innerText = numOfNotes;
+        
     }
-    
+    tableDisplay.style.display = "block";
 }
+
 
 function hideMessage() {
     message.style.display = "none";
