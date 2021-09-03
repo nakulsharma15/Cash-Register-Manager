@@ -26,7 +26,11 @@ nextButton.addEventListener("click", function validateBillAmount() {
 
 checkButton.addEventListener("click", function validateBillAndCashAmount() {
     hideMessage();
-    if(Number(cashGiven.value) >= Number(billAmount.value)) {
+    if(cashGiven.value < 0 || billAmount.value < 0) {
+        showMessage("Invalid Number!");
+        tableDisplay.style.display= "none";
+    }
+    else if(Number(cashGiven.value) >= Number(billAmount.value)) {
         const amountToBeReturned = cashGiven.value - billAmount.value;
         calculateReturnChange(amountToBeReturned);
     }
@@ -36,6 +40,8 @@ checkButton.addEventListener("click", function validateBillAndCashAmount() {
 
 });
 function calculateReturnChange(amountToBeReturned){
+
+
     for(let i=0; i<availableNotes.length; i++){
 
         const numOfNotes = Math.trunc(amountToBeReturned / availableNotes[i]);
@@ -46,6 +52,7 @@ function calculateReturnChange(amountToBeReturned){
         
     }
     tableDisplay.style.display = "block";
+  
 }
 
 
