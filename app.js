@@ -36,6 +36,7 @@ checkButton.addEventListener("click", function validateBillAndCashAmount() {
     }
     else {
         showMessage("Do you wanna wash plates?");
+        tableDisplay.style.display= "none";
     }
 
 });
