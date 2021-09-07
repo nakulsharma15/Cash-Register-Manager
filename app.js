@@ -30,6 +30,15 @@ checkButton.addEventListener("click", function validateBillAndCashAmount() {
         showMessage("Invalid Number!");
         tableDisplay.style.display= "none";
     }
+
+    else if(cashGiven.value === billAmount.value) {
+        showMessage("No change is to be given!");
+        tableDisplay.style.display= "none";
+    }
+    else if(cashGiven.value < 0){
+        showMessage("Invalid Number!");
+        tableDisplay.style.display= "none";
+    }
     else if(Number(cashGiven.value) >= Number(billAmount.value)) {
         const amountToBeReturned = cashGiven.value - billAmount.value;
         calculateReturnChange(amountToBeReturned);
