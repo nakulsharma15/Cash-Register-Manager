@@ -39,7 +39,7 @@ checkButton.addEventListener("click", function validateBillAndCashAmount() {
         showMessage("Invalid Number!");
         tableDisplay.style.display= "none";
     }
-    else if(Number(cashGiven.value) >= Number(billAmount.value)) {
+    else if(cashGiven.value > billAmount.value) {
         const amountToBeReturned = cashGiven.value - billAmount.value;
         calculateReturnChange(amountToBeReturned);
     }
