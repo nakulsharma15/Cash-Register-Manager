@@ -20,7 +20,7 @@ nextButton.addEventListener("click", function validateBillAmount() {
         
     }
     else {
-        showMessage("Invalid Number");
+        showMessage("Invalid Number!");
     }
 });
 
@@ -38,6 +38,11 @@ checkButton.addEventListener("click", function validateBillAndCashAmount() {
 
     else if(cashGiven.value === billAmount.value) {
         showMessage("No change is to be given!");
+        tableDisplay.style.display= "none";
+    }
+
+    else if(billAmount.value <= 0){
+        showMessage("Invalid Number!");
         tableDisplay.style.display= "none";
     }
     
